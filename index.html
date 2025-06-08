@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clima Tonalá (Móvil)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-container">
+        <div class="weather-info">
+            <p class="city-name">Cargando Ciudad...</p>
+            <p class="temperature">
+                <span class="temp-value">--</span><span class="temp-unit">°</span>
+            </p>
+            <p class="weather-condition">Cargando Condición...</p>
+            <p class="humidity-low-temp">H --° L --°</p>
+        </div>
+
+        <div class="air-quality-card card">
+            <p class="card-title">CALIDAD DEL AIRE</p>
+            <p class="air-quality-status">Cargando...</p>
+            <div class="progress-bar">
+                <div class="progress-fill aqi-progress"></div>
+            </div>
+        </div>
+
+        <div class="scrollable-contaminants">
+            <div class="contaminants-card card">
+                <p class="card-title">CONTAMINANTES</p>
+                <div class="contaminant-grid">
+                    <div class="contaminant-item">
+                        <p class="contaminant-name">Dióxido de Nitrógeno</p>
+                        <div class="progress-bar small">
+                            <div class="progress-fill nitrogen-progress"></div>
+                        </div>
+                        <p class="contaminant-value"><span class="no2-value">--</span> ppb - <span class="no2-status"></span></p>
+                    </div>
+                    <div class="contaminant-item">
+                        <p class="contaminant-name">Monóxido de Carbono</p>
+                        <div class="progress-bar small">
+                            <div class="progress-fill carbon-progress"></div>
+                        </div>
+                        <p class="contaminant-value"><span class="co-value">--</span> ppm - <span class="co-status"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ozone-card card">
+                <p class="card-title">OZONO</p>
+                <div class="contaminant-grid">
+                    <div class="contaminant-item">
+                        <p class="contaminant-name">Ozono (O₃)</p>
+                        <div class="progress-bar small">
+                            <div class="progress-fill ozone-progress"></div>
+                        </div>
+                        <p class="contaminant-value"><span class="o3-value">--</span> ppb - <span class="o3-status"></span></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+/* Estilos globales y reseteo básico */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Fondo de respaldo oscuro */
+    display: flex; /* Usamos flexbox para centrar el contenedor del celular */
+    justify-content: center; /* Centra el contenedor del celular horizontalmente */
+    align-items: center; /* Centra el contenedor del celular verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    overflow: hidden; /* Evita barras de desplazamiento si algo se sale */
+}
+
+/* Contenedor principal que simula la pantalla del celular */
+.mobile-container {
+    width: 100vw; /* Ocupa el 100% del ancho del viewport */
+    height: 100vh; /* Ocupa el 100% de la altura del viewport */
+    border-radius: 0; /* Quita los bordes redondeados si quieres que ocupe todo */
+    box-shadow: none; /* Quita la sombra si quieres que ocupe todo */
+
+    background-image: url('Background.png'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+
+    overflow: hidden; /* Recorta el contenido que se salga */
+
+    /* Flexbox para organizar el contenido verticalmente dentro del celular */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Asegura que el contenido empiece arriba */
+}
+
+/* Sección de información principal del clima (Ciudad, Temperatura, Condición, Humedad/Low-High) */
+.weather-info {
+    text-align: center; /* Centra todo el texto y elementos inline-block dentro de este div */
+    margin-top: 50px; /* Distancia desde la parte superior del celular. AJUSTA ESTE VALOR para subir/bajar */
+    flex-grow: 0; /* Este div no crecerá, se mantendrá en su tamaño de contenido + margin-top */
+    width: 100%; /* Ocupa todo el ancho del .mobile-container para que text-align funcione bien */
+    padding: 0 20px; /* Un poco de padding horizontal para que el texto no se pegue a los bordes */
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
+}
+
+.city-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 39px; /* Tamaño exacto de Figma */
+    font-weight: 300; /* Ligero */
+    color: #FFFFFF;
+    margin-bottom: -10px; /* Ajuste para acercar a la temperatura */
+    line-height: 1.2; /* Espaciado de línea */
+}
+
+.temperature {
+    font-family: 'Inter', sans-serif;
+    font-size: 120.88px; /* Tamaño exacto de Figma */
+    font-weight: 300;
+    color: #FFFFFF;
+    line-height: 1; /* Para evitar espacio extra entre líneas */
+    margin-top: 0;
+    margin-bottom: 0;
+    display: inline-block; /* Para que el p.temperature se centre con text-align: center del padre */
+    position: relative; /* Para poder posicionar el símbolo de grados de forma absoluta */
+}
+
+/* Ajustes para el símbolo de grados */
+.temp-unit {
+    font-size: 0.5em; /* Hace el símbolo proporcionalmente más pequeño que el número. Puedes probar con un valor fijo como 60px si quieres */
+    position: absolute; /* Posicionamiento absoluto relativo al .temperature */
+    top: 0.25em; /* Ajusta este valor para subir o bajar el símbolo (relativo al font-size del padre) */
+    right: -0.5em; /* Ajusta este valor para moverlo más a la derecha o izquierda del número */
+}
+
+.weather-condition {
+    font-family: 'Inter', sans-serif;
+    font-size: 25.18px; /* Tamaño exacto de Figma */
+    font-weight: 400; /* Normal */
+    color: #FFFFFF;
+    margin-top: 5px;
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+.humidity-low-temp {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px; /* Este valor es una estimación proporcional si "lo de abajo" era la condición. Puedes ajustarlo manualmente */
+    font-weight: 300;
+    color: #FFFFFF;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* --- Estilos para las tarjetas de información (Calidad del Aire y Contaminantes) --- */
+.card {
+    background-color: rgba(60, 40, 100, 0.5); /* Color semitransparente oscuro con púrpura */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    border-radius: 20px;
+    margin: 15px 20px; /* Margen superior/inferior de 15px, izquierdo/derecho de 20px */
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white; /* Asegura que el texto dentro sea blanco */
+    flex-shrink: 0; /* Evita que las tarjetas se encojan */
+}
+
+.card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em; /* Aproximadamente 14.4px si la base es 16px */
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.air-quality-status {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4em; /* Aproximadamente 22.4px */
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Barras de progreso */
+.progress-bar {
+    width: 100%;
+    height: 8px; /* Grosor de la barra principal */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+
+.progress-bar.small {
+    height: 4px; /* Barra más pequeña para contaminantes */
+    margin-top: 5px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%; /* Empezamos en 0% y JavaScript lo ajustará */
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 4px;
+    transition: width 0.5s ease-out; /* Animación suave para la barra de progreso */
+}
+
+/* Colores específicos para las barras de progreso */
+.aqi-progress {
+    background: linear-gradient(to right, #6EE7B7, #3B82F6, #9333EA); /* Ej. verde-azul-púrpura */
+}
+.nitrogen-progress {
+    background: linear-gradient(to right, #60A5FA, #2563EB); /* Azul */
+}
+.carbon-progress {
+    background: linear-gradient(to right, #A78BFA, #7C3AED); /* Púrpura */
+}
+.ozone-progress {
+    background: linear-gradient(to right, #FDE68A, #F59E0B); /* Amarillo-naranja */
+}
+
+/* Contaminantes */
+.contaminant-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 20px; /* Espacio entre columnas y filas */
+}
+
+.contaminant-item {
+    text-align: left;
+}
+
+.contaminant-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9em; /* Aproximadamente 14.4px */
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contaminant-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em; /* Aproximadamente 17.6px */
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* --- ESTILOS PARA EL CONTENEDOR DESPLAZABLE DE CONTAMINANTES --- */
+.scrollable-contaminants {
+    flex-grow: 1; /* Permite que esta sección ocupe el espacio restante */
+    overflow-y: auto; /* Permite el scroll vertical si el contenido excede la altura */
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+    padding-bottom: 20px; /* Un poco de padding al final para que el último elemento no se pegue al borde */
+}
